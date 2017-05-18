@@ -140,10 +140,10 @@ public class SpecificSingleEnzymeIterator implements SequenceIterator {
                     if (peptide != null
                             && (massMin == null || peptide.getMass() >= massMin)
                             && (massMax == null || peptide.getMass() <= massMax)) {
-                        result.add(new PeptideWithPosition(peptide, initialIndex));
+                        result.add(new PeptideWithPosition(peptide, peptideStart));
                     }
                     int peptideMissedCleavages = peptideStartMap.get(peptideStart);
-                    if (smallMass.getObject() && peptideMissedCleavages < nMissedCleavages) {
+                    if (smallMass.getObject() && peptideMissedCleavages + 1 < nMissedCleavages) {
                         newPeptideStartMap.put(peptideStart, peptideMissedCleavages + 1);
                     }
                 }
